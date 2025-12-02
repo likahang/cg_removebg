@@ -12,9 +12,8 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 複製後端程式碼（只複製必要檔案，不包含 frontend）
+# 複製後端程式碼
 COPY server.py .
-COPY run.py .
 
 # 暴露端口
 EXPOSE 8000
