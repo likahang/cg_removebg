@@ -1,0 +1,74 @@
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --accent:#2563eb;
+  --accent-2:#1e40af;
+}
+
+*{box-sizing:border-box}
+body{
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  margin:0;
+  background:var(--bg);
+  color:#0f172a;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.page{
+  max-width:980px;
+  margin:36px auto;
+  padding:20px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:12px;
+  padding:28px;
+  box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+}
+
+.header{display:flex;align-items:center;gap:18px}
+.logo{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+.title{font-size:20px;font-weight:600}
+.subtitle{color:var(--muted);margin-top:6px}
+
+.controls{display:flex;gap:14px;align-items:center;margin-top:18px}
+
+.uploader{
+  flex:1;
+  min-height:140px;
+  border-radius:10px;
+  background:linear-gradient(180deg, rgba(99,102,241,0.03), rgba(99,102,241,0.01));
+  border:1px dashed rgba(99,102,241,0.18);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;padding:14px;cursor:pointer;
+}
+.uploader.dragover{background:linear-gradient(180deg, rgba(37,99,235,0.07), rgba(37,99,235,0.03));border-color:rgba(37,99,235,0.6)}
+.upload-instructions{color:var(--muted);font-size:14px}
+.file-meta{margin-top:8px;color:#111827;font-size:13px}
+
+.preview{display:flex;gap:16px;margin-top:18px;align-items:flex-start}
+.preview img{max-width:360px;border-radius:8px;border:1px solid rgba(99,102,241,0.06);background:linear-gradient(180deg,#fff,#fbfdff)}
+.preview .meta{color:var(--muted)}
+
+.actions{display:flex;gap:12px;align-items:center}
+
+.spinner{width:20px;height:20px;border-radius:50%;border:3px solid rgba(0,0,0,0.08);border-top-color:var(--accent);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.result-download{margin-top:12px}
+
+.small{font-size:13px;color:var(--muted)}
+
+/* layout tweaks to resemble original removebg spacing */
+.card{padding:32px}
+.controls{gap:20px}
+.actions{margin-top:8px}
+
+/* responsive */
+@media (max-width:880px){
+  .preview{flex-direction:column;align-items:center}
+  .uploader{min-height:120px}
+}
+

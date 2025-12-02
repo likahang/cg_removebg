@@ -1,0 +1,12 @@
+services:
+  backend:
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port ${PORT}
+    envs:
+      - PORT
+    
+  frontend:
+    path: frontend
+    buildCommand: npm install && npm run build
+    outputDirectory: frontend/dist
+    framework: vite

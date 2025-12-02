@@ -1,0 +1,34 @@
+node_modules
+releases
+dist
+tmp
+.DS_Store
+.vscode
+.parcel-cache
+.env
+
+# 模型文件（太大，不要提交）
+*.pth
+*.onnx
+*.pb
+*.h5
+
+# MAM 相關（已移除）
+Matting-Anything/
+*MAM*.md
+*MAM*.bat
+*MAM*.py
+
+# 備份和測試文件
+*-backup/
+*-orig-backup/
+test_*.py
+test_*.jpg
+test_*.png
+demo_*.png
+demo_*.jpg
+
+# Python 相關
+__pycache__/
+*.pyc
+*.pyo

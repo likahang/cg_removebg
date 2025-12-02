@@ -1,0 +1,9 @@
+frontend/node_modules
+frontend/dist
+__pycache__
+*.pyc
+.git
+.gitignore
+README.md
+test_upload_and_check.py
+frontend-orig-backup

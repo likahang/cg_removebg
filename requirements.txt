@@ -1,0 +1,24 @@
+fastapi
+uvicorn[standard]
+python-multipart
+Pillow
+withoutbg
+torch
+torchvision
+opencv-python
+numpy
+scipy
+timm
+einops
+
+# Matting Anything (MAM) 額外依賴
+easydict
+scikit-image
+tensorboardX
+pycocotools
+matplotlib
+addict
+toml
+termcolor
+yapf
+safetensors
