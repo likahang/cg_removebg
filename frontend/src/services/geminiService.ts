@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://remove.zeabur.app'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://removebg.zeabur.app'
 
 export async function removeBackground(file: File): Promise<string> {
   const fd = new FormData()
