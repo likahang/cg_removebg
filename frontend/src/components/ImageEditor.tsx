@@ -15,6 +15,7 @@ type BrushMode = 'erase' | 'restore';
 export const ImageEditor: React.FC<ImageEditorProps> = ({ imageUrl, originalImageUrl, filename, onSave, onCancel }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cursorCanvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [brushSize, setBrushSize] = useState(20);
   const [brushMode, setBrushMode] = useState<BrushMode>('erase');
@@ -38,18 +39,20 @@ export const ImageEditor: React.FC<ImageEditorProps> = ({ imageUrl, originalImag
     img.onload = () => {
       imageRef.current = img;
       
-      // 計算可用的畫布區域大小（扣除右側工具區 320px + 邊界 + padding）
-      const toolbarWidth = 320; // w-80 = 320px
-      const containerWidth = window.innerWidth - toolbarWidth - 120; // 扣除工具區和padding
-      const containerHeight = window.innerHeight - 320; // 扣除標題、底部等空間
+      // 使用容器的實際尺寸
+      const container = containerRef.current;
+      if (!container) return;
+      
+      const containerWidth = container.clientWidth - 32; // 扣除 padding
+      const containerHeight = container.clientHeight - 32;
       
       let width = img.width;
       let height = img.height;
       
-      // 計算縮放比例，確保圖片不會超出容器
+      // 計算縮放比例，使圖片盡可能填滿容器但不超出
       const widthRatio = containerWidth / width;
       const heightRatio = containerHeight / height;
-      const scale = Math.min(widthRatio, heightRatio); // 不限制放大，但確保不超出
+      const scale = Math.min(widthRatio, heightRatio); // 選擇較小的比例，確保完全適應
       
       width = Math.floor(width * scale);
       height = Math.floor(height * scale);
@@ -285,7 +288,7 @@ export const ImageEditor: React.FC<ImageEditorProps> = ({ imageUrl, originalImag
         </div>
 
         {/* 畫布區域 */}
-        <div className="flex-1 relative bg-gray-900/50 overflow-hidden flex items-center justify-center p-4 min-h-0">
+        <div ref={containerRef} className="flex-1 relative bg-gray-900/50 overflow-hidden flex items-center justify-center p-4 min-h-0">
           <div className="absolute inset-0 pointer-events-none opacity-20" 
                 style={{
                   backgroundImage: `linear-gradient(45deg, #333 25%, transparent 25%), linear-gradient(-45deg, #333 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #333 75%), linear-gradient(-45deg, transparent 75%, #333 75%)`,
